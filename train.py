@@ -234,6 +234,10 @@ def run_kfold_training(config, comments, labels, tokenizer, device):
             'max_length': config.max_length,
             'freeze_base': config.freeze_base,
             'dropout': config.dropout,
+            'use_lora': config.use_lora,              # ADD THIS
+            'lora_r': config.lora_r,                  # ADD THIS
+            'lora_alpha': config.lora_alpha,          # ADD THIS
+            'lora_dropout': config.lora_dropout,      # ADD THIS
             'weight_decay': config.weight_decay,
             'warmup_ratio': config.warmup_ratio,
             'gradient_clip_norm': config.gradient_clip_norm,
