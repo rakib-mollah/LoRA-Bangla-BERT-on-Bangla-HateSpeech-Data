@@ -295,7 +295,15 @@ def run_kfold_training(config, comments, labels, tokenizer, device):
             val_loader = DataLoader(val_dataset, batch_size=config.batch, 
                                    shuffle=False, num_workers=2, pin_memory=True)
 
-            model = TransformerBinaryClassifier(config.model_path, dropout=config.dropout)
+            model = TransformerBinaryClassifier(
+                model_name=config.model_path,
+                dropout=config.dropout,
+                use_lora=config.use_lora,
+                lora_r=config.lora_r,
+                lora_alpha=config.lora_alpha,
+                lora_dropout=config.lora_dropout
+            )
+
             if config.freeze_base:
                 model.freeze_base_layers()
             model.to(device)
