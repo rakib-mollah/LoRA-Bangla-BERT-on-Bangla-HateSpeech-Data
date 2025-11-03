@@ -51,29 +51,23 @@ class TransformerBinaryClassifier(nn.Module):
             nn.Linear(256, 1)  # Single output for binary classification
         )
     
-    def forward(self, input_ids, attention_mask=None, labels=None):
+    def forward(self, input_ids, attention_mask=None):
         """
         Forward pass of the model.
         
         Args:
             input_ids: Token IDs from tokenizer
             attention_mask: Attention mask for padding
-            labels: Ground truth labels (optional, for loss calculation)
-        
+            
         Returns:
-            dict: Dictionary containing loss (if labels provided) and logits
+            dict: Dictionary containing logits
         """
         outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
         cls_output = outputs.last_hidden_state[:, 0, :]
-        logits = self.classifier(cls_output)  # Shape: (batch_size, 1)
+        logits = self.classifier(cls_output)
         
-        loss = None
-        if labels is not None:
-            labels = labels.view(-1, 1)  # Reshape to (batch_size, 1)
-            loss_fct = nn.BCEWithLogitsLoss()
-            loss = loss_fct(logits, labels)
-        
-        return {'loss': loss, 'logits': logits}
+        return {'logits': logits}
+
     
     def freeze_base_layers(self):
         """
