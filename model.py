@@ -33,7 +33,7 @@ class TransformerBinaryClassifier(nn.Module):
         # Apply LoRA if requested
         if use_lora:
             lora_config = LoraConfig(
-                task_type=TaskType.SEQ_CLS,
+                task_type=TaskType.FEATURE_EXTRACTION,  # Changed from SEQ_CLS
                 r=lora_r,
                 lora_alpha=lora_alpha,
                 lora_dropout=lora_dropout,
