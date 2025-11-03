@@ -118,7 +118,7 @@ def train_epoch(model, dataloader, optimizer, scheduler, device, class_weights=N
 
         optimizer.zero_grad()
         with autocast():
-            outputs = model(input_ids, attention_mask=attention_mask, labels=None)
+            outputs = model(input_ids, attention_mask=attention_mask)
             loss = loss_fct(outputs['logits'], labels)
 
         scaler.scale(loss).backward()
@@ -157,7 +157,7 @@ def evaluate_model(model, dataloader, device, class_weights=None):
             labels = batch['labels'].to(device).view(-1, 1)
 
             with autocast():
-                outputs = model(input_ids, attention_mask=attention_mask, labels=None)
+                outputs = model(input_ids, attention_mask=attention_mask)
                 loss = loss_fct(outputs['logits'], labels)
             total_loss += loss.item()
 
