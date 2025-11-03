@@ -103,6 +103,11 @@ def print_config(config):
     print(f"  Max Sequence Length: {config.max_length}")
     print(f"  Freeze Base: {config.freeze_base}")
     print(f"  Dropout: {config.dropout}")
+    print(f"  Use LoRA: {config.use_lora}")
+    print(f"  LoRA Rank: {config.lora_r}")
+    print(f"  LoRA Alpha: {config.lora_alpha}")
+    print(f"  LoRA Dropout: {config.lora_dropout}")
+
     print("\nOptimizer Parameters:")
     print(f"  Weight Decay: {config.weight_decay}")
     print(f"  Warmup Ratio: {config.warmup_ratio}")
