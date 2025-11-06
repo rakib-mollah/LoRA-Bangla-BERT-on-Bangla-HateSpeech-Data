@@ -1,4 +1,4 @@
-# BanglaBERT Hate Speech Detection Fine-Tuning
+# LoRA-BanglaBERT Hate Speech Detection Fine-Tuning
 
 ![BanglaBERT Logo](https://img.shields.io/badge/Model-BanglaBERT-blue) ![License](https://img.shields.io/badge/License-MIT-green) ![Python](https://img.shields.io/badge/Python-3.8%2B-yellow)
 
@@ -23,26 +23,36 @@ Run fine-tuning via `main.py` with command-line arguments. All experiments log t
 ### Running in Google Colab (Recommended for Free GPU)
 1. Open Colab: [colab.research.google.com](https://colab.research.google.com).
 2. Enable GPU: Runtime > Change runtime type > T4 GPU.
-3. Clone repo: `!git clone https://github.com/AnnNaserNabil/Finetune-Bangla-BERT-on-Bangla-HateSpeech-Data`
-4. `%cd Finetune-Bangla-BERT-on-Bangla-HateSpeech-Data`
+3. Clone repo:
+   ```
+   !git clone https://github.com/rakib-mollah/LoRA-Bangla-BERT-on-Bangla-HateSpeech-Data
+   ```
+4. ```
+   %cd LoRA-Bangla-BERT-on-Bangla-HateSpeech-Data
+   ```
 5. Install dependencies:
    ```
-   !pip install -q torch transformers scikit-learn pandas numpy tqdm mlflow
+   !pip install -q torch transformers scikit-learn pandas numpy tqdm mlflow peft
    ```
 
 
    ### Running in [Kaggle](https://www.kaggle.com/)
    1. Open a new notebook
    2. Go to Settings -> Accelerator -> Choose GPU P100
-   3. 3. Clone repo: `!git clone https://github.com/AnnNaserNabil/Finetune-Bangla-BERT-on-Bangla-HateSpeech-Data`
-   4. `%cd Finetune-Bangla-BERT-on-Bangla-HateSpeech-Data`
+   3. Clone repo:
+      ```
+      !git clone https://github.com/rakib-mollah/LoRA-Bangla-BERT-on-Bangla-HateSpeech-Data
+      ```
+   4. ```
+      %cd LoRA-Bangla-BERT-on-Bangla-HateSpeech-Data
+      ```
    5. Install dependencies:
-   ```
-   !pip install -q torch transformers scikit-learn pandas numpy tqdm mlflow
-   ```
+      ```
+      !pip install -q torch transformers scikit-learn pandas numpy tqdm mlflow peft
+      ```
    (Get the dataset path from sidebar)
    
-7. Run command (replace with your values):
+6. Run command (replace with your values):
    ```
    !python main.py \
     --author_name "your_name" \
@@ -59,7 +69,10 @@ Run fine-tuning via `main.py` with command-line arguments. All experiments log t
     --gradient_clip_norm 1.0 \
     --early_stopping_patience 5 \
     --num_folds 5 \
-    --freeze_base
+    --freeze_base \
+   --lora_r 8 \
+   --lora_alpha 16 \
+   --lora_dropout 0.1
    ```
    
    - Full arguments:
