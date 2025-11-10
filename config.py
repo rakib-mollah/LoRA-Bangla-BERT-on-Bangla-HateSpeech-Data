@@ -55,8 +55,10 @@ def parse_arguments():
                        help='Maximum norm for gradient clipping.')
     parser.add_argument('--early_stopping_patience', type=int, default=5,
                        help='Number of epochs without improvement before early stopping.')
-    parser.add_argument('--use_lora', type=bool, default=True,
-                    help='Whether to use LoRA for fine-tuning.')
+    # parser.add_argument('--use_lora', type=bool, default=True,
+    #                 help='Whether to use LoRA for fine-tuning.')
+    parser.add_argument('--use_lora', type=str, default='True',
+                    help='Whether to use LoRA for fine-tuning (True/False).')
     parser.add_argument('--lora_r', type=int, default=8,
                         help='LoRA rank (lower = fewer params, try 4-16).')
     parser.add_argument('--lora_alpha', type=int, default=16,
@@ -66,6 +68,8 @@ def parse_arguments():
 
 
     args = parser.parse_args()
+    # args = parser.parse_args()
+    args.use_lora = args.use_lora.lower() == 'true'
 
     if args.batch <= 0:
         raise ValueError("Batch size must be positive")
