@@ -67,8 +67,7 @@ def parse_arguments():
 
 
     args = parser.parse_args()
-    # args = parser.parse_args()
-    args.use_lora = args.use_lora.lower() == 'true'
+    args.use_lora = args.use_lora.lower() == 'true'
 
     if args.batch <= 0:
         raise ValueError("Batch size must be positive")
