@@ -57,8 +57,7 @@ def parse_arguments():
                        help='Number of epochs without improvement before early stopping.')
     # parser.add_argument('--use_lora', type=bool, default=True,
     #                 help='Whether to use LoRA for fine-tuning.')
-    parser.add_argument('--use_lora', type=str, default='True',
-                    help='Whether to use LoRA for fine-tuning (True/False).')
+    parser.add_argument('--use_lora', type=str, default='True',help='Whether to use LoRA for fine-tuning (True/False).')
     parser.add_argument('--lora_r', type=int, default=8,
                         help='LoRA rank (lower = fewer params, try 4-16).')
     parser.add_argument('--lora_alpha', type=int, default=16,
